@@ -5,8 +5,9 @@ const app = createApp(App)
 //pinia
 import {createPinia} from 'pinia'
 const pinia = createPinia()
-//ElementPlus
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
 
-app.use(pinia).use(ElementPlus).mount('#app')
+// ElementPlus 全量引入
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
+
+app.use(pinia).mount('#app')

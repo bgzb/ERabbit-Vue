@@ -45,3 +45,7 @@ Tip: You can add screenshots or a GIF of your project here to make it more visua
 
 🤝 Contributing
 This is a personal portfolio project. If you find any bugs or have suggestions, feel free to open an Issue or submit a Pull Request.
+
+
+Element-Plus
+npm install element-plus --save

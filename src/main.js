@@ -11,12 +11,6 @@ const pinia = createPinia()
 // import 'element-plus/dist/index.css'
 
 
-//测试axios接口函数
-import { getCategory } from '@/apis/testApi'
-getCategory().then(res => {
-  console.log(res)
-})
-
 //引入初始化样式
 import '@/styles/common.scss'
 

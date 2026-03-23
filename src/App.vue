@@ -1,11 +1,17 @@
 <template>
-  <el-button type="primary">Primary</el-button>
+  <!-- 一级路由出口 -->
+  <router-view></router-view>
+  <div class=test>
+    text scss
+  </div>
 </template>
 
 <script setup>
 
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.test {
+  color: $priceColor;
+}
 </style>

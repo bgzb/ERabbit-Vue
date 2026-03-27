@@ -1,7 +1,7 @@
 <script setup>
 import { getGoodsAPI } from '@/apis/home';
 import HomePanel from './HomePanel.vue';
-import {ref, onMounted} from 'vue';
+import { ref, onMounted } from 'vue';
 import GoodsItem from './GoodsItem.vue';
 const goodsProduct = ref([]);
 
@@ -21,7 +21,7 @@ onMounted(() => {
     <HomePanel :title="cate.name" v-for="cate in goodsProduct" :key="cate.id">
       <div class="box">
         <RouterLink class="cover" to="/">
-          <img v-img-lazy="cate.picture" /> 
+          <img v-img-lazy="cate.picture" />
           <strong class="label">
             <span>{{ cate.name }}馆</span>
             <span>{{ cate.saleInfo }}</span>
@@ -99,6 +99,14 @@ onMounted(() => {
           &:last-child {
             flex: 1;
             background: rgba(0, 0, 0, 0.7);
+
+            white-space: pre-line; // 识别内容里的换行符并换行
+            line-height: 1.2; 
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            padding: 0 5px;
+            font-size: 14px; 
           }
         }
       }

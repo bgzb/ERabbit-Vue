@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia' //引入pinia，定义一个category的store
 import { getCategoryAPI } from '@/apis/layout'
 export const useCategoryStore = defineStore('category', () => {
     //当前导航列表的逻辑

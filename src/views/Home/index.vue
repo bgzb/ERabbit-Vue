@@ -3,7 +3,6 @@
     <HomeCategory></HomeCategory>
     <HomeBanner></HomeBanner>
   </div>
-  <!-- 新鲜好物 HomeNews -->
   <HomeNew></HomeNew>
   <HomeHot></HomeHot>
   <HomeProduct></HomeProduct>

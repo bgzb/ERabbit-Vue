@@ -2,19 +2,36 @@
 import { getCategoryFilterAPI } from '@/apis/category'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-
+import { getSubCategoryAPI } from '@/apis/category'
+import GoodsItem from '@/views/Home/components/GoodsItem.vue'
+//获取二级分类面包屑导航数据
 const categoryData = ref({})
-
 const route = useRoute()
-
 const getCategoryData = async () => {
   const res = await getCategoryFilterAPI(route.params.id)
-  console.log("这里是二级分类数据", res)
+  console.log("这里是二级分类面包屑导航数据", res)
   categoryData.value = res.result
+}
+onMounted(() => {
+  getCategoryData()
+})
+
+//获取二级分类下的商品数据
+const goodsList = ref([])
+const reqData = ref({
+  categoryId: route.params.id,
+  page: 1,
+  pageSize: 10,
+  sortField: 'publishTime',
+})
+const getGoodsList = async () =>{
+  const res = await getSubCategoryAPI(reqData.value)
+  console.log("这里是二级分类下的商品数据", res)
+  goodsList.value = res.result.items
 }
 
 onMounted(() => {
-  getCategoryData()
+  getGoodsList()
 })
 </script>
 
@@ -38,7 +55,7 @@ onMounted(() => {
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
       </el-tabs>
       <div class="body">
-        <!-- 商品列表-->
+        <GoodsItem :goods="goods" v-for="goods in goodsList" :key="goods.id"></GoodsItem>
       </div>
     </div>
   </div>

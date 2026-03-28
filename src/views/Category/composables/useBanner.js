@@ -7,7 +7,7 @@ export function useBanner() {
 
   const getBanner = async () => {
     const res = await getBannerAPI({ distributionSite: '2' })
-    console.log(res)
+    console.log("这里是banner数据",res)
     bannerList.value = res.result
   }
 

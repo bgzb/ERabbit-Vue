@@ -1,47 +1,14 @@
 <script setup>
 
-import GoodsItem from  '@/views/Home/components/GoodsItem.vue'
-import {useBanner} from './composables/useBanner'
-import {useCategory} from './composables/useCategory'
+import GoodsItem from '@/views/Home/components/GoodsItem.vue'
+import { useBanner } from './composables/useBanner'
+import { useCategory } from './composables/useCategory'
 
 //获取banner数据
 const { bannerList } = useBanner()//解构赋值
 //获取分类数据
 const { categoryData } = useCategory()
 
-
-
-// //获取分类数据
-// const categoryData = ref({})
-
-// const getCategory = async (id = route.params.id) => {
-//   const res = await getCategoryAPI(id)
-//   console.log(res)
-//   categoryData.value = res.result
-// }
-
-// onMounted(() => {
-//   getCategory()
-// })
-
-// //路由参数变化的时候 可以把分类数据接口重新发送
-// onBeforeRouteUpdate((to) =>{
-//   // console.log('路由参数变化了')
-//   // console.log(to)
-//   //使用新的路由参数
-//   getCategory(to.params.id)
-// })
-
-// //获取轮播图数据
-// const bannerList = ref([])
-
-// const getBanner = async () => {
-//   const res = await getBannerAPI({ distributionSite: '2' })
-//   console.log(res)
-//   bannerList.value = res.result
-// }
-
-// onMounted(() => getBanner())
 </script>
 
 <template>
@@ -175,5 +142,4 @@ const { categoryData } = useCategory()
     height: 500px;
   }
 }
-
 </style>

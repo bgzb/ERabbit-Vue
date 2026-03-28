@@ -11,7 +11,7 @@ export function useCategory(){
     const route = useRoute()
     const getCategory = async (id = route.params.id) => {
         const res = await getCategoryAPI(id)
-        console.log(res)
+        console.log("这里是一级分类数据", res)
         categoryData.value = res.result
     }
 
@@ -21,7 +21,6 @@ export function useCategory(){
 
     //路由参数变化的时候 可以把分类数据接口重新发送
     onBeforeRouteUpdate((to) => {
-        // console.log('路由参数变化了')
         // console.log(to)
         //使用新的路由参数
         getCategory(to.params.id)

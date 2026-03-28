@@ -1,13 +1,14 @@
 // 封装分类数据业务相关代码
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { getCategoryAPI } from '@/api/category'
+import { getCategoryAPI } from '@/apis/category'
 import { onBeforeRouteUpdate } from 'vue-router'
 
 
-export const useCategory(){
-    const categoryData = ref({})
 
+export function useCategory(){
+    const categoryData = ref({})
+    const route = useRoute()
     const getCategory = async (id = route.params.id) => {
         const res = await getCategoryAPI(id)
         console.log(res)

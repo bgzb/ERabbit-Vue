@@ -1,19 +1,15 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { getCategoryAPI } from '@/apis/category';
-import { useRoute } from 'vue-router'
-import { getBannerAPI } from '@/apis/home'
-import { onBeforeRouteUpdate } from 'vue-router'
-import GoodsItem from  '@/views/Home/components/GoodsItem'
-import useBanner from './composables/useBanner'
-import userCategory from './composables/useCategory'
+
+import GoodsItem from  '@/views/Home/components/GoodsItem.vue'
+import {useBanner} from './composables/useBanner'
+import {useCategory} from './composables/useCategory'
 
 //获取banner数据
 const { bannerList } = useBanner()//解构赋值
 //获取分类数据
-const { categoryData } = userCategory()
-//获取路由参数
-const route = useRoute()
+const { categoryData } = useCategory()
+
+
 
 // //获取分类数据
 // const categoryData = ref({})

@@ -5,13 +5,15 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "exclude": [
-    "node_modules", 
-    "dist", 
-    "unpackage", 
-    "temp",
+    "node_modules",
+    "dist",
+    ".vscode",
+    "public"
   ]
 }

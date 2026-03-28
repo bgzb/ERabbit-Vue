@@ -2,8 +2,11 @@
   <LayoutFixed></LayoutFixed>
   <LayoutNav></LayoutNav>
   <LayoutHeader></LayoutHeader>
-  <!-- 二级路由出口 -->
-  <router-view></router-view>
+  <!-- 二级路由出口  Home组件或Category组件-->
+   <!-- 为了解决组件复用生命周期钩子函数不重新执行，导致路由跳转不重新发送请求 -->
+  <!-- 给路由组件添加一个key，每次路由跳转都会重新渲染组件， 问题：暴力销毁和重新渲染，浪费 -->
+  <!-- <router-view :key=$route.fullPath></router-view>  -->
+   <router-view></router-view>
   <LayoutFooter></LayoutFooter>
 </template>
 

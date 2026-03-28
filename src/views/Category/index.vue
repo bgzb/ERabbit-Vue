@@ -3,32 +3,49 @@ import { onMounted, ref } from 'vue'
 import { getCategoryAPI } from '@/apis/category';
 import { useRoute } from 'vue-router'
 import { getBannerAPI } from '@/apis/home'
+import { onBeforeRouteUpdate } from 'vue-router'
+import GoodsItem from  '@/views/Home/components/GoodsItem'
+import useBanner from './composables/useBanner'
+import userCategory from './composables/useCategory'
+
+//获取banner数据
+const { bannerList } = useBanner()//解构赋值
+//获取分类数据
+const { categoryData } = userCategory()
 //获取路由参数
 const route = useRoute()
 
-//获取数据
-const categoryData = ref({})
+// //获取分类数据
+// const categoryData = ref({})
 
-const getCategory = async () => {
-  const res = await getCategoryAPI(route.params.id)
-  console.log(res)
-  categoryData.value = res.result
-}
+// const getCategory = async (id = route.params.id) => {
+//   const res = await getCategoryAPI(id)
+//   console.log(res)
+//   categoryData.value = res.result
+// }
 
-onMounted(() => {
-  getCategory()
-})
+// onMounted(() => {
+//   getCategory()
+// })
 
-//获取轮播图数据
-const bannerList = ref([])
+// //路由参数变化的时候 可以把分类数据接口重新发送
+// onBeforeRouteUpdate((to) =>{
+//   // console.log('路由参数变化了')
+//   // console.log(to)
+//   //使用新的路由参数
+//   getCategory(to.params.id)
+// })
 
-const getBanner = async () => {
-  const res = await getBannerAPI({ distributionSite: '2' })
-  console.log(res)
-  bannerList.value = res.result
-}
+// //获取轮播图数据
+// const bannerList = ref([])
 
-onMounted(() => getBanner())
+// const getBanner = async () => {
+//   const res = await getBannerAPI({ distributionSite: '2' })
+//   console.log(res)
+//   bannerList.value = res.result
+// }
+
+// onMounted(() => getBanner())
 </script>
 
 <template>
@@ -48,6 +65,25 @@ onMounted(() => getBanner())
             <img :src="item.imgUrl" alt="">
           </el-carousel-item>
         </el-carousel>
+      </div>
+      <div class="sub-list">
+        <h3>全部分类</h3>
+        <ul>
+          <li v-for="i in categoryData.children" :key="i.id">
+            <RouterLink :to="`/category/sub/${i.id}`">
+              <img :src="i.picture" />
+              <p>{{ i.name }}</p>
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
+      <div class="ref-goods" v-for="item in categoryData.children" :key="item.id">
+        <div class="head">
+          <h3>- {{ item.name }}-</h3>
+        </div>
+        <div class="body">
+          <GoodsItem v-for="good in item.goods" :goods="good" :key="good.id" />
+        </div>
       </div>
     </div>
   </div>

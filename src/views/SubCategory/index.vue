@@ -25,7 +25,7 @@ const reqData = ref({
   pageSize: 10,
   sortField: 'publishTime',
 })
-const getGoodsList = async () =>{
+const getGoodsList = async () => {
   const res = await getSubCategoryAPI(reqData.value)
   console.log("这里是二级分类下的商品数据", res)
   goodsList.value = res.result.items
@@ -34,11 +34,22 @@ const getGoodsList = async () =>{
 onMounted(() => {
   getGoodsList()
 })
-
-const tabChange = () =>{
+//tab切换事件
+const tabChange = () => {
   // console.log("tab切换了", reqData.value.sortField)
   reqData.value.page = 1//切换tab页时重置页码
   getGoodsList()
+}
+//加载更多
+const disabled = ref(false)//是否禁用加载更多
+const load = async () => {
+  // console.log("加载更多")
+  reqData.value.page++
+  const res = await getSubCategoryAPI(reqData.value)
+  goodsList.value = [...goodsList.value, ...res.result.items]//展开运算符拼接新老数据
+  if (res.result.items.length === 0) {
+    disabled.value = true
+  }
 }
 </script>
 
@@ -61,7 +72,7 @@ const tabChange = () =>{
         <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
       </el-tabs>
-      <div class="body">
+      <div class="body" v-infinite-scroll="load" :infinite-scroll-disabled="disabled">
         <GoodsItem :goods="goods" v-for="goods in goodsList" :key="goods.id"></GoodsItem>
       </div>
     </div>

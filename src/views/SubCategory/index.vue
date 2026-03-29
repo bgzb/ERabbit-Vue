@@ -18,6 +18,7 @@ onMounted(() => {
 
 //获取二级分类下的商品数据
 const goodsList = ref([])
+//请求参数
 const reqData = ref({
   categoryId: route.params.id,
   page: 1,
@@ -33,6 +34,12 @@ const getGoodsList = async () =>{
 onMounted(() => {
   getGoodsList()
 })
+
+const tabChange = () =>{
+  // console.log("tab切换了", reqData.value.sortField)
+  reqData.value.page = 1//切换tab页时重置页码
+  getGoodsList()
+}
 </script>
 
 
@@ -49,7 +56,7 @@ onMounted(() => {
       </el-breadcrumb>
     </div>
     <div class="sub-container">
-      <el-tabs>
+      <el-tabs v-model="reqData.sortField" @tab-change="tabChange">
         <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
         <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>

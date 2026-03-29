@@ -4,6 +4,7 @@ import Layout from '@/views/Layout/index.vue'
 import Category from '@/views/Category/index.vue'
 import Login from '@/views/Login/index.vue'
 import SubCategory from '@/views/SubCategory/index.vue'
+import Detail from '@/views/Detail/index.vue'
 
 const routes = [
     {
@@ -21,6 +22,10 @@ const routes = [
             {
                 path: 'category/sub/:id',
                 component: SubCategory,
+            },
+            {
+                path: 'detail/:id',
+                component: Detail,  
             }
         ]
     },

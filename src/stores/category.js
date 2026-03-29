@@ -7,7 +7,7 @@ export const useCategoryStore = defineStore('category', () => {
 
     const getCategory = async () => {
         const res = await getCategoryAPI()
-        console.log(res)
+        console.log("这里是一级分类数据",res)
         categoryList.value = res.result
     }
 

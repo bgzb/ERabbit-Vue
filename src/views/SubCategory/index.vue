@@ -72,6 +72,7 @@ const load = async () => {
         <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
       </el-tabs>
+      <!-- 无限加载v-infinite-scroll -->
       <div class="body" v-infinite-scroll="load" :infinite-scroll-disabled="disabled">
         <GoodsItem :goods="goods" v-for="goods in goodsList" :key="goods.id"></GoodsItem>
       </div>

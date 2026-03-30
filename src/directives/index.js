@@ -9,7 +9,7 @@ export const lazyPlugin = {
                 //binding:binding.value就是指令的值，即等于号后面，这里是图片的url
                 // console.log(el, binding.value)
                 //懒加载图片功能，进入视区才加载图片
-                const { stop } = useIntersectionObserver(
+                const { stop } = useIntersectionObserver(//解构赋值
                     el,
                     ([entry]) => {
                         // console.log(entry)  

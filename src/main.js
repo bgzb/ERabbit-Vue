@@ -13,7 +13,6 @@ const pinia = createPinia()
 //懒加载图片功能，进入视区才加载图片
 import { lazyPlugin } from '@/directives'
 
-
 //引入初始化样式
 import '@/styles/common.scss'
 

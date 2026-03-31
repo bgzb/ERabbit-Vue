@@ -6,6 +6,7 @@ import { getHotGoodsAPI } from "@/apis/detail";
 import { ref, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 
+
 //设计props参数
 const props = defineProps({
     hotType: {

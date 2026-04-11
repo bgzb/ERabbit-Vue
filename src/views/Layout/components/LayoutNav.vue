@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
 const confirm = () => {
   router.push('/login')
 }

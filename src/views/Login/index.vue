@@ -1,6 +1,11 @@
 <script setup>
-
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { loginAPI } from '@/apis/user'
+import 'element-plus/theme-chalk/el-message.css'
+import { ElMessage } from 'element-plus'
+
+const router = useRouter()
 
 const form = ref({
   account: '',
@@ -30,6 +35,26 @@ const rules = {
   ]
 }
 
+const formRef = ref(null)
+
+const onLogin = () => {
+  const { account, password } = form.value;
+  formRef.value.validate(async (valid) => {
+    if (valid) {
+      // console.log('登录成功')
+      const res = await loginAPI({ account, password })
+      console.log(res)
+      sessionStorage.setItem('token', res.result.token)
+      //1.提示用户
+      ElMessage.success('登录成功')
+      //2.跳转到首页
+      router.push('/')
+    } else {
+      // console.log('登录失败')
+    }
+  })
+}
+
 </script>
 
 
@@ -55,7 +80,7 @@ const rules = {
         </nav>
         <div class="account-box">
           <div class="form">
-            <el-form :model="form" :rules="rules" label-position="right" label-width="60px">
+            <el-form ref="formRef" :model="form" :rules="rules" label-position="right" label-width="60px">
               <el-form-item prop="account" label="账户">
                 <el-input v-model="form.account" placeholder="请输入用户名" />
               </el-form-item>
@@ -67,7 +92,7 @@ const rules = {
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn">点击登录</el-button>
+              <el-button size="large" class="subBtn" @click="onLogin()">点击登录</el-button>
             </el-form>
           </div>
         </div>

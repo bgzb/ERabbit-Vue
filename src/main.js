@@ -4,7 +4,10 @@ import router from './router'
 
 //pinia
 import { createPinia } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persistedstate'
 const pinia = createPinia()
+//自动持久化插件
+pinia.use(piniaPluginPersist)
 
 // ElementPlus 全量引入
 // import ElementPlus from 'element-plus'

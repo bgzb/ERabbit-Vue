@@ -44,8 +44,8 @@ const onLogin = () => {
     if (valid) {
       // console.log('登录成功')
       await userStore.getUserInfo({account, password})
-
-      sessionStorage.setItem('token', userStore.userInfo.token)
+      // localStorage.setItem('token', userStore.userInfo.token)
+      
       //1.提示用户
       ElMessage.success('登录成功')
       //2.跳转到首页

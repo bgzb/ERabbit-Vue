@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useCartStore = defineStore('cart',
@@ -17,9 +17,31 @@ export const useCartStore = defineStore('cart',
                 cartList.value.push(goods)
             }
         }
+
+        //3.定义删除商品的action
+        const delCart = (skuId) => {
+            const index = cartList.value.findIndex((item) => item.skuId === skuId)
+            if (index > -1) {
+                cartList.value.splice(index, 1)
+            }
+        }
+
+        //4.定义计算属性 - 购物车总件数
+        const allCount = computed(() => {
+            return cartList.value.reduce((sum, item) => sum + item.count, 0)
+        })
+
+        //5.定义计算属性 - 购物车总价格
+        const allPrice = computed(() => {
+            return cartList.value.reduce((sum, item) => sum + (item.price * item.count), 0)
+        })
+
         return {
             cartList,
-            addCart
+            addCart,
+            delCart,
+            allCount,
+            allPrice
         }
 
     },
